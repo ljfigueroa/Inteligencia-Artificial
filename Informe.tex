@@ -1,0 +1,169 @@
+\documentclass[11pt,oneside,a4paper]{article}
+\usepackage{xltxtra} % Para usar características avanzadas de XeLaTeX, como elegir la fuente.
+\usepackage{minted} 
+\usepackage{polyglossia} % Un sustituto de babel.
+\setdefaultlanguage{spanish}
+\usepackage{indentfirst} % Necesario para que sangre la primera línea de los primeros párrafos.
+ 
+\defaultfontfeatures{Mapping=tex-text,Ligatures=Common} % Para que funcionen cosas como --- y las ligaduras.
+
+\usepackage{hyperref}
+%\usepackage{showframe}
+\usepackage[top=2in, bottom=1.5in, left=1.5in, right=1in]{geometry}
+%\usepackage{}
+%\setmainfont{CMU Serif} % Ésta hay que descargarla. Si no, puedes usar la Linux Libertine.
+%\setsansfont{CMU Sans Serif}
+%\setmonofont{CMU Typewriter Text}
+%\setmainfont{Linux Libertine 0}
+%\setsansfont{Linux Biolinum O}
+%\setmonofont{Inconsolata}
+
+
+%\usepackage[pdftex]{graphicx}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%\renewcommand\thesection{\arabic{section}}
+
+\title{FDisk}
+\author{Lauro Figueroa}
+\date{1 de Enero de 1970}
+\begin{document}
+ 
+\begin{titlepage}
+\begin{center}
+
+% Upper part of the page. The '~' is needed because \\
+% only works if a paragraph has started.
+\includegraphics[width=0.15\textwidth]{./Logo.jpg}~\\[1cm]
+
+\textsc{\LARGE Facultad de Ciencias Exactas, Ingeniería y Agrimensura}\\[1.5cm]
+
+\textsc{\Large Trabajo final}\\[0.5cm]
+
+% Title
+\HRule \\[0.4cm]
+{ \huge \bfseries Sistema Experto \\[0.4cm] }
+
+\HRule \\[1.5cm]
+
+% Author and supervisor
+\noindent
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Alumno:}\\
+Emilio \textsc{Lopez}\\
+Lauro \textsc{Figueroa}
+\end{flushleft}
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Profesores:} \\
+Dr.Esteban \textsc{Ruiz}\\
+Dr.Fededico \textsc{Bergero}\\
+Dr.Diego \textsc{Feroldi}
+\end{flushright}
+\end{minipage}
+
+\vfill
+
+% Bottom of the page
+{\large \today}
+
+\end{center}
+\end{titlepage}
+
+%\maketitle
+\newpage 
+
+\section*{Introducción}
+
+El sistema experto propuesto clasifica juegos, los mismos como 
+dominio nos permite generar un procedimiento que busque y verifique
+una hipótesis generando preguntas necesarias e informe con
+"Te recomendamos jugar: ..." sobre que elemento del dominio uno 
+puede estar interezado.
+
+
+\section{Conseptualizar el dominio}
+
+Los objetos del dominio son:
+csgo, 
+gta5, 
+dota2, 
+garrys mod, 
+cities skyline, 
+sims3, 
+goat simulator, 
+tf2, 
+hl2, 
+dirt3, 
+football manager, 
+portal2, 
+dying light, 
+kerbal space program, 
+l4d2 y 
+worms armaggedon.
+
+Las reglas de clasificación son:
+
+\begin{itemize}
+  \item csgo es un multiplataforma, multijugador, fps, shooter de accion. 
+  \item gta5 es para windows, multijugador de estrategia.
+  \item 
+  \item 
+  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+%  \item 
+\end{itemize}
+
+\subsection{Relación entre los los atibutos de un objeto y las reglas}
+
+%Predicados. que son y como los combinamos?
+%los predicados son reglas?, si lo son como se las carateriasa o diferencia?
+
+Las reglas de clasificacion de los objetos son
+
+
+\inputminted[firstline=1, lastline=13, fontsize=\footnotesize]{perl}{tp-prolog.pl}
+
+
+\subsection{Combinando reglas}
+
+
+
+\subsection{Interpretacion y resultados}
+
+\section{Implementar el sistema experto}
+
+\section*{Bibliografia}
+
+
+\href{http://susam.in/articles/boot-sector-code/}{Susam In}\\
+\href{http://www.pelletiernet.com/helppc/int_13-2.html}{INT 13}\\
+\href{http://en.wikipedia.org/wiki/Master_boot_record}{MBR wiki}
+
+\end{document}
+
+%windows(X) :- satisface(para\_windows,X).\\
+%macos(X) :- satisface(para\_macos,X).\\
+%linux(X) :- satisface(para\_linux,X).\\
+%multiplataforma(X) :- windows(X); macos(X); linux(X).
+
+%multiplayer(X) :- satisface(es\_multiplayer,X).\\
+%singleplayer(X) :- satisface(es\_singleplayer,X).
+
+%fps(X) :- satisface(tipo\_fps,X).\\
+%accion(X) :- satisface(tipo\_accion,X).\\
+%shooter(X) :- satisface(tipo\_shooter,X).\\
+%estrategia(X) :- satisface(tipo\_estrategia,X).\\
+%simulacion(X) :- satisface(tipo\_simulacion,X).\\x
