@@ -1,6 +1,7 @@
 \documentclass[11pt,oneside,a4paper]{article}
 \usepackage{xltxtra} % Para usar características avanzadas de XeLaTeX, como elegir la fuente.
 \usepackage{minted} 
+\usepackage{multicol}
 \usepackage{polyglossia} % Un sustituto de babel.
 \setdefaultlanguage{spanish}
 \usepackage{indentfirst} % Necesario para que sangre la primera línea de los primeros párrafos.
@@ -39,7 +40,7 @@
 
 \textsc{\LARGE Facultad de Ciencias Exactas, Ingeniería y Agrimensura}\\[1.5cm]
 
-\textsc{\Large Trabajo final}\\[0.5cm]
+\textsc{\Large Trabajo de cátedra}\\[0.5cm]
 
 % Title
 \HRule \\[0.4cm]
@@ -51,7 +52,7 @@
 \noindent
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
-\emph{Alumno:}\\
+\emph{Alumnos:}\\
 Emilio \textsc{Lopez}\\
 Lauro \textsc{Figueroa}
 \end{flushleft}
@@ -59,9 +60,8 @@ Lauro \textsc{Figueroa}
 \begin{minipage}{0.4\textwidth}
 \begin{flushright} \large
 \emph{Profesores:} \\
-Dr.Esteban \textsc{Ruiz}\\
-Dr.Fededico \textsc{Bergero}\\
-Dr.Diego \textsc{Feroldi}
+Ana \textsc{Casali}\\
+Federico \textsc{Guimpel}\\
 \end{flushright}
 \end{minipage}
 
@@ -82,28 +82,33 @@ El sistema experto propuesto clasifica juegos, los mismos como
 dominio nos permiten generar un procedimiento que busque y verifique
 una hipótesis generando preguntas "necesarias" e informe con          % o.O
 "Te recomendamos jugar: ..." sobre que elemento del dominio el
-usuario puede estar interezado.
+usuario puede estar interesado.
 
 
-\section{Conseptualizar el dominio}
+\section{Conceptualizar el dominio}
 
 Los objetos del dominio son:
-csgo, 
-gta5, 
-dota2, 
-garrys mod, 
-cities skyline, 
-sims3, 
-goat simulator, 
-tf2, 
-hl2, 
-dirt3, 
-football manager, 
-portal2, 
-dying light, 
-kerbal space program, 
-l4d2 y 
-worms armaggedon.
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Counter Strike: Global Offensive (csgo), 
+\item Grand Theft Auto: V (gta5), 
+\item DOTA 2 (dota2), 
+\item Garry's Mod (garrys\_mod)
+\item Cities Skyline (cities\_skyline), 
+\item The Sims 3 (sims3), 
+\item Goat Simulator (goat\_simulator),
+\item Team Fortress 2 (tf2), 
+\item Half-Life 2 (hl2), 
+\item DiRT 3 (dirt3), 
+\item Football Manager (football\_manager), 
+\item Portal 2 (portal2), 
+\item Dying Light (dying\_light), 
+\item Kerbal Space Program (kerbal\_space\_program), 
+\item Left 4 Dead 2 (l4d2) y 
+\item Worms: Armaggedon (worms\_armaggedon).
+\end{itemize}
+\end{multicols}
 
 Las reglas de clasificación son:
 
@@ -126,26 +131,26 @@ Las reglas de clasificación son:
 %  \item 
 \end{itemize}
 
-\subsection{Relación entre los los atibutos de un objeto y las reglas}
+\subsection{Relación entre los los atributos de un objeto y las reglas}
 
 %Predicados. que son y como los combinamos?
-%los predicados son reglas?, si lo son como se las carateriasa o diferencia?
+%los predicados son reglas?, si lo son como se las carateriza o diferencia?
 
 Todo sistema experto tiene una base de datos, un conocimiento previo sobre el
-cual razonar. Las reglas de clasificacion de los objetos son propiedades
+cual razonar. Las reglas de clasificación de los objetos son propiedades
 sobre los mismos de las cuales podemos inferir conocimiento.
 
 \inputminted[firstline=1, lastline=13, fontsize=\footnotesize]{perl}{tp-prolog.pl}
 
-Estas reglas por si solas no son mas que conocimiento, pero necesitmos inferier 
-sobre el mismo, necesetimos un mecanismo sobre el cual interpretar las preferencias 
+Estas reglas por si solas no son más que conocimiento, pero necesitamos inferir 
+sobre el mismo; es decir, necesitamos un mecanismo sobre el cual interpretar las preferencias 
 de un usuario y agregar ese nuevo conocimento a la base de datos.
 
 % falta algo Titulo?
 
-El predicado pregunta dado en clase, nos da una forma de ganar nuevo conocimiento
-haciendo preguntas al usuario sobre sus preferencias.
-perminten generar un sistema interactivo con el ususario y generar nuevo
+El predicado \emph{pregunta} dado en clase nos da una forma de ganar nuevo conocimiento
+realizando preguntas al usuario sobre sus preferencias.
+Permiten generar un sistema interactivo con el usuario y generar nuevo
 conocimiento a medida que ciertas preguntas son respondidas y agregarlo a
 la base de datos.
 
@@ -159,13 +164,14 @@ la base de datos.
 % expandiendo el poder de inferencia
 
 
-¿Como inferir nuevo conocimiento? ¿Como se guarda el mismo?
+¿Cómo inferir nuevo conocimiento? ¿Cómo se guarda el mismo?
 
-Cada pregunta puede ser respondida con si o no (o una leve variacion 
-sintactica de alguna de las mismas). El sistema hace una pregunta 
-solo cuando desconoce su respuesta, ie, sabe que elemento del dominio 
+Cada pregunta puede ser respondida con sí o no (o una leve variación 
+sintáctica de alguna de las mismas). El sistema hace una pregunta 
+sólo cuando desconoce su respuesta; es decir, sabe que elemento del dominio 
 posee un atributo o no, lo que desconoce es en que conjuntos de atributos 
-el usuario quiere que se satisfagan. 
+el usuario quiere que se satisfagan.
+
 Implementamos usando satisface  % ?? chamuyo 
 provista en clase,% su funcionamiento es simple si un el atributo buscado no 
 
@@ -174,7 +180,7 @@ provista en clase,% su funcionamiento es simple si un el atributo buscado no
 %multiplataforma
 
 El predicado multiplataforma, esta compuesto por tres predicados más simples
-combinados por un 'v' logico que 
+combinados por un \emph {o} lógico que 
 
 \subsection{Interpretacion y resultados}
 
