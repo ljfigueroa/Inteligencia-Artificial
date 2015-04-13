@@ -1,16 +1,16 @@
-windows(X) :- satisface(para_windows,X).
-macos(X) :- satisface(para_macos,X).
-linux(X) :- satisface(para_linux,X).
+windows(X) :- satisface('que corra en Windows',X).
+macos(X) :- satisface('que corra en Mac OS X',X).
+linux(X) :- satisface('que corra en GNU/Linux',X).
 multiplataforma(X) :- windows(X); macos(X); linux(X).
 
-multiplayer(X) :- satisface(es_multiplayer,X).
-singleplayer(X) :- satisface(es_singleplayer,X).
+multiplayer(X) :- satisface('que sea multijugador',X).
+singleplayer(X) :- not(multiplayer(X)).
 
-fps(X) :- satisface(tipo_fps,X).
-accion(X) :- satisface(tipo_accion,X).
-shooter(X) :- satisface(tipo_shooter,X).
-estrategia(X) :- satisface(tipo_estrategia,X).
-simulacion(X) :- satisface(tipo_simulacion,X).
+fps(X) :- satisface('de tipo FPS',X).
+accion(X) :- satisface('de acción',X).
+shooter(X) :- satisface('de tipo shooter',X).
+estrategia(X) :- satisface('de estrategia',X).
+simulacion(X) :- satisface('de simulación',X).
 
 
 csgo(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X).
@@ -41,7 +41,7 @@ satisface(Atributo,_) :-
 ).
 
 pregunta(A) :-
-	write('¿Te interesa este atributo?: '), write(A), write(' '), read(Resp), nl,
+	write('¿Te interesa un juego '), write(A), write('? '), read(Resp), nl,
 	(
 		(Resp == 's' ; Resp == 'si' ; Resp == 'sí') -> assert(si(A));
 		assert(no(A)
@@ -53,20 +53,20 @@ borraResp.
 
 juego :- adivina(Juego,_), write('Te recomendamos jugar: '), write(Juego), nl, borraResp.
 
-adivina(csgo,X) :- csgo(X).
-adivina(gta5,X) :- gta5(X).
-adivina(dota2,X) :- dota2(X).
-adivina(garrys_mod,X) :- garrys_mod(X).
-adivina(cities_skyline,X) :- cities_skyline(X).
-adivina(sims3,X) :- sims3(X).
-adivina(goat_simulator,X) :- goat_simulator(X).
-adivina(tf2,X) :- tf2(X).
-adivina(hl2,X) :- hl2(X).
-adivina(dirt3,X) :- dirt3(X).
-adivina(football_manager,X) :- football_manager(X).
-adivina(portal2,X) :- portal2(X).
-adivina(dying_light,X) :- dying_light(X).
-adivina(kerbal_space_program,X) :- kerbal_space_program(X).
-adivina(l4d2,X) :- l4d2(X).
-adivina(worms_armaggedon,X) :- worms_armaggedon(X).
-adivina(no_sabemos,_).
+adivina('Counter Strike: Global Offensive',X) :- csgo(X), !.
+adivina('Grand Theft Auto: V',X) :- gta5(X), !.
+adivina('DOTA 2',X) :- dota2(X), !.
+adivina('Garry\'s Mod',X) :- garrys_mod(X), !.
+adivina('Cities Skyline',X) :- cities_skyline(X), !.
+adivina('The Sims 3',X) :- sims3(X), !.
+adivina('Goat Simulator',X) :- goat_simulator(X), !.
+adivina('Team Fortress 2',X) :- tf2(X), !.
+adivina('Half-Life 2',X) :- hl2(X), !.
+adivina('DiRT 3',X) :- dirt3(X), !.
+adivina('Football Manager',X) :- football_manager(X), !.
+adivina('Portal 2',X) :- portal2(X), !.
+adivina('Dying Light',X) :- dying_light(X), !.
+adivina('Kerbal Space Program',X) :- kerbal_space_program(X), !.
+adivina('Left 4 Dead 2',X) :- l4d2(X), !.
+adivina('Worms: Armaggedon',X) :- worms_armaggedon(X), !.
+adivina('no sabemos :(',_).
