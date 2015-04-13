@@ -35,7 +35,7 @@
 
 % Upper part of the page. The '~' is needed because \\
 % only works if a paragraph has started.
-\includegraphics[width=0.15\textwidth]{./Logo.jpg}~\\[1cm]
+%\includegraphics[width=0.15\textwidth]{./Logo.jpg}~\\[1cm]
 
 \textsc{\LARGE Facultad de Ciencias Exactas, Ingeniería y Agrimensura}\\[1.5cm]
 
@@ -80,7 +80,7 @@ Dr.Diego \textsc{Feroldi}
 
 El sistema experto propuesto clasifica juegos, los mismos como 
 dominio nos permite generar un procedimiento que busque y verifique
-una hipótesis generando preguntas necesarias e informe con
+una hipótesis generando preguntas "necesarias" e informe con
 "Te recomendamos jugar: ..." sobre que elemento del dominio uno 
 puede estar interezado.
 
@@ -131,11 +131,41 @@ Las reglas de clasificación son:
 %Predicados. que son y como los combinamos?
 %los predicados son reglas?, si lo son como se las carateriasa o diferencia?
 
-Las reglas de clasificacion de los objetos son
-
+Todo sistema experto tiene una base de datos, un conocimiento previo sobre el
+cual razonar, las reglas de clasificacion de los objetos son propiedades
+sobre los mismos de las cuales podemos inferir conocimiento.
 
 \inputminted[firstline=1, lastline=13, fontsize=\footnotesize]{perl}{tp-prolog.pl}
 
+Estas reglas por si solas no son mas que conocimiento, pero necesitmos inferier 
+sobre el mismo, necesetimos un mecanismo sobre el cual conseguir las preferencias 
+de un usuario y agregar ese nuevo conocimento a la base de datos.
+
+
+El predicado pregunta dado en clase, nos da una forma de ganar nuevo conocimiento
+haciendo preguntas al usuario sobre sus preferencias.
+perminten generar un sistema interactivo con el ususario y generar nuevo
+conocimiento a medida que ciertas preguntas son respondidas.
+
+Pero, ¿Qué son las 
+preguntas?, las preguntas son la unica manera que tiene el sistema diseñado 
+para ganar conocimiento sobre lo que el usuario desea. ¿Que pasa cuando las responde?
+cada vez que el usuario interactivamente las responde el 
+conjunto de conocimiento se agranda, expandiendo el nivel de exactitud  % meh
+de con que la respuesta sera entregada.
+% expandiendo el poder de inferencia
+
+
+¿Como inferir nuevo conocimiento? ¿Como se guarda el mismo?
+
+Cada pregunta puede ser respondida con si o no (o una leve variacion 
+sintactica de alguna de las mismas). El sistema hace una pregunta 
+solo cuando desconoce su respuesta, ie, sabe que elemento del dominio 
+posee ese atributo o no, lo que desconoce es en que conjuntos de atributos 
+el usuario puede quiere que se satisfagan. 
+Implementamos usando satisface  % ?? chamuyo 
+provista en clase, su funcionamiento es simple si un el atributo buscado
+no 
 
 \subsection{Combinando reglas}
 
