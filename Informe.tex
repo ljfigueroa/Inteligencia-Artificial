@@ -79,10 +79,10 @@ Dr.Diego \textsc{Feroldi}
 \section*{Introducción}
 
 El sistema experto propuesto clasifica juegos, los mismos como 
-dominio nos permite generar un procedimiento que busque y verifique
-una hipótesis generando preguntas "necesarias" e informe con
-"Te recomendamos jugar: ..." sobre que elemento del dominio uno 
-puede estar interezado.
+dominio nos permiten generar un procedimiento que busque y verifique
+una hipótesis generando preguntas "necesarias" e informe con          % o.O
+"Te recomendamos jugar: ..." sobre que elemento del dominio el
+usuario puede estar interezado.
 
 
 \section{Conseptualizar el dominio}
@@ -132,27 +132,30 @@ Las reglas de clasificación son:
 %los predicados son reglas?, si lo son como se las carateriasa o diferencia?
 
 Todo sistema experto tiene una base de datos, un conocimiento previo sobre el
-cual razonar, las reglas de clasificacion de los objetos son propiedades
+cual razonar. Las reglas de clasificacion de los objetos son propiedades
 sobre los mismos de las cuales podemos inferir conocimiento.
 
 \inputminted[firstline=1, lastline=13, fontsize=\footnotesize]{perl}{tp-prolog.pl}
 
 Estas reglas por si solas no son mas que conocimiento, pero necesitmos inferier 
-sobre el mismo, necesetimos un mecanismo sobre el cual conseguir las preferencias 
+sobre el mismo, necesetimos un mecanismo sobre el cual interpretar las preferencias 
 de un usuario y agregar ese nuevo conocimento a la base de datos.
 
+% falta algo Titulo?
 
 El predicado pregunta dado en clase, nos da una forma de ganar nuevo conocimiento
 haciendo preguntas al usuario sobre sus preferencias.
 perminten generar un sistema interactivo con el ususario y generar nuevo
-conocimiento a medida que ciertas preguntas son respondidas.
+conocimiento a medida que ciertas preguntas son respondidas y agregarlo a
+la base de datos.
 
-Pero, ¿Qué son las 
-preguntas?, las preguntas son la unica manera que tiene el sistema diseñado 
-para ganar conocimiento sobre lo que el usuario desea. ¿Que pasa cuando las responde?
-cada vez que el usuario interactivamente las responde el 
-conjunto de conocimiento se agranda, expandiendo el nivel de exactitud  % meh
-de con que la respuesta sera entregada.
+% meh - borrar 
+%Pero, ¿Qué son las 
+%preguntas?, las preguntas son la unica manera que tiene el sistema diseñado 
+%para ganar conocimiento sobre lo que el usuario desea. ¿Que pasa cuando las responde?
+%cada vez que el usuario interactivamente las responde el 
+%conjunto de conocimiento se agranda, expandiendo el nivel de exactitud  % meh
+%de con que la respuesta sera entregada.
 % expandiendo el poder de inferencia
 
 
@@ -161,19 +164,22 @@ de con que la respuesta sera entregada.
 Cada pregunta puede ser respondida con si o no (o una leve variacion 
 sintactica de alguna de las mismas). El sistema hace una pregunta 
 solo cuando desconoce su respuesta, ie, sabe que elemento del dominio 
-posee ese atributo o no, lo que desconoce es en que conjuntos de atributos 
-el usuario puede quiere que se satisfagan. 
+posee un atributo o no, lo que desconoce es en que conjuntos de atributos 
+el usuario quiere que se satisfagan. 
 Implementamos usando satisface  % ?? chamuyo 
-provista en clase, su funcionamiento es simple si un el atributo buscado
-no 
+provista en clase,% su funcionamiento es simple si un el atributo buscado no 
 
-\subsection{Combinando reglas}
+\subsection{Combinando reglas} % borrar
 
+%multiplataforma
 
+El predicado multiplataforma, esta compuesto por tres predicados más simples
+combinados por un 'v' logico que 
 
 \subsection{Interpretacion y resultados}
 
 \section{Implementar el sistema experto}
+
 
 \section*{Bibliografia}
 
