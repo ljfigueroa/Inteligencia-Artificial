@@ -39,7 +39,7 @@
 %\includegraphics[width=0.15\textwidth]{./Logo.jpg}~\\[1cm]
 
 \textsc{\LARGE Facultad de Ciencias Exactas, Ingeniería y Agrimensura}\\[1.5cm]
-
+	
 \textsc{\Large Trabajo de cátedra}\\[0.5cm]
 
 % Title
@@ -104,32 +104,22 @@ Los objetos del dominio son:
 \item Football Manager,
 \item Portal 2,
 \item Dying Light,
-\item Kerbal Space Program,
-\item Left 4 Dead 2 y
+\item Kerbal Space Program y
 \item Worms: Armaggedon.
 \end{itemize}
 \end{multicols}
 
-Las reglas de clasificación son:
+Cada elemento de dominio tiene atributos que representan sus propiedades, las
+mismas permiten clasificarlos. Por ejemplo Counter Strike: Global Offensive
+es un juego muliplataforma, multijugador, fps, de acción y un shooter. En prolog 
+lo representamos de la siguiente forma:\\
 
-\begin{itemize}
-  \item csgo es un multiplataforma, multijugador, fps, shooter de accion. 
-  \item gta5 es para windows, multijugador de estrategia.
-  \item 
-  \item 
-  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-%  \item 
-\end{itemize}
+csgo(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X).
+
+Donde la regla shooter es representada: 
+
+shooter(X) :- satisface('de tipo shooter',X).
+
 
 \subsection{Relación entre los los atributos de un objeto y las reglas}
 
@@ -138,9 +128,10 @@ Las reglas de clasificación son:
 
 Todo sistema experto tiene una base de datos, un conocimiento previo sobre el
 cual razonar. Las reglas de clasificación de los objetos son propiedades
-sobre los mismos de las cuales podemos inferir conocimiento.
+sobre los mismos de las cuales podemos inferir conocimiento. Las reglas 
+implementadas son:
 
-\inputminted[firstline=1, lastline=13, fontsize=\footnotesize]{perl}{tp-prolog.pl}
+\inputminted[firstline=1, lastline=15, fontsize=\footnotesize]{perl}{tp-prolog.pl}
 
 Estas reglas por si solas no son más que conocimiento, pero necesitamos inferir 
 sobre el mismo; es decir, necesitamos un mecanismo sobre el cual interpretar las preferencias 
@@ -150,9 +141,9 @@ de un usuario y agregar ese nuevo conocimento a la base de datos.
 
 El predicado \emph{pregunta} dado en clase nos da una forma de ganar nuevo conocimiento
 realizando preguntas al usuario sobre sus preferencias.
-Permiten generar un sistema interactivo con el usuario y generar nuevo
-conocimiento a medida que ciertas preguntas son respondidas y agregarlo a
-la base de datos.
+Estas permiten generar un sistema interactivo y generar nuevo %hacen interactiva la experiencia al usuario
+conocimiento a medida que ciertas preguntas son respondidas y sus respectivas respuestas
+agregadas a la base de datos.\\
 
 % meh - borrar 
 %Pero, ¿Qué son las 
@@ -164,27 +155,35 @@ la base de datos.
 % expandiendo el poder de inferencia
 
 
-¿Cómo inferir nuevo conocimiento? ¿Cómo se guarda el mismo?
+¿Cómo inferir nuevo conocimiento? ¿Cómo lo guardo?
 
 Cada pregunta puede ser respondida con sí o no (o una leve variación 
 sintáctica de alguna de las mismas). El sistema hace una pregunta 
 sólo cuando desconoce su respuesta; es decir, sabe que elemento del dominio 
 posee un atributo o no, lo que desconoce es en que conjuntos de atributos 
-el usuario quiere que se satisfagan.
+el usuario quiere que se satisfagan. En el siguiente ejemplo el 
+sistema desconoce si el usuario esta interesado en juegos para Windows, por lo
+que pregunta:
 
-Implementamos usando satisface  % ?? chamuyo 
-provista en clase,% su funcionamiento es simple si un el atributo buscado no 
+¿Te interesa un juego que corra en Windows? 
+
+De responder si agrega si('que corrar en Windows') a la base de datos usando 
+assert de manera analoga si hubiera respondido no. Lo que hay que remarcar en ambos casos 
+es que la base de datos se expandio, ganando un criterio o preferencia del usuario.
 
 \subsection{Combinando reglas} % borrar
 
-%multiplataforma
+El problema de clasificación por etapas está presente en este sistema, el predicado 
+multiplataforma esta compuesto por tres predicados más simples
+combinados por un \emph{o} lógico que obliga al inferidor que proceda en etapas, 
+categorías que luego se especializan en Windows, GNU/Linux o MacOS. 
 
-El predicado multiplataforma, esta compuesto por tres predicados más simples
-combinados por un \emph {o} lógico que 
-
-\subsection{Interpretacion y resultados}
+%\subsection{Interpretacion y resultados}
 
 \section{Implementar el sistema experto}
+
+En esta sección desarrollaremos como implementamos el sistema experto mostrando un ejemplo
+de su funcionamiento.
 
 
 \section*{Bibliografia}
@@ -204,7 +203,7 @@ combinados por un \emph {o} lógico que
 %multiplayer(X) :- satisface(es\_multiplayer,X).\\
 %singleplayer(X) :- satisface(es\_singleplayer,X).
 
-%fps(X) :- satisface(tipo\_fps,X).\\
+%fps(X) :- satisface(tipo\_fps,X).\\\begin{tabular}{lll}
 %accion(X) :- satisface(tipo\_accion,X).\\
 %shooter(X) :- satisface(tipo\_shooter,X).\\
 %estrategia(X) :- satisface(tipo\_estrategia,X).\\
