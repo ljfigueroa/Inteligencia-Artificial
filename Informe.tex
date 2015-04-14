@@ -26,9 +26,9 @@
 
 %\renewcommand\thesection{\arabic{section}}
 
-\title{FDisk}
-\author{Lauro Figueroa}
-\date{1 de Enero de 1970}
+\title{Sistema Experto}
+\author{Emilio López y Lauro Figueroa}
+\date{\today}
 \begin{document}
  
 \begin{titlepage}
@@ -80,8 +80,8 @@ Federico \textsc{Guimpel}\\
 
 El sistema experto propuesto clasifica juegos, los mismos como 
 dominio nos permiten generar un procedimiento que busque y verifique
-una hipótesis generando preguntas solo cuando son necesarias e informe con          % o.O
-"Te recomendamos jugar: ..." sobre que elemento del dominio el
+una hipótesis generando preguntas sólo cuando son necesarias, e informe con          % o.O
+\emph{"Te recomendamos jugar: ..."} sobre que elemento del dominio el
 usuario puede estar interesado.
 
 
@@ -109,17 +109,20 @@ Los objetos del dominio son:
 \end{itemize}
 \end{multicols}
 
-Cada elemento de dominio tiene atributos que representan sus propiedades, las
-mismas permiten clasificarlos. Por ejemplo Counter Strike: Global Offensive
-es un juego muliplataforma, multijugador, fps, de acción y un shooter. En prolog 
-lo representamos de la siguiente forma:\\
+Cada elemento de dominio tiene atributos que representan sus propiedades; las
+mismas permiten clasificarlos. Por ejemplo \emph{Counter Strike: Global Offensive}
+es un juego muliplataforma, multijugador, FPS, de acción, y un shooter. En Prolog 
+lo representamos de la siguiente forma:
 
+\begin{minted}{prolog}
 csgo(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X).
+\end{minted}
 
-Donde el predicado shooter es representado: 
+Donde el predicado shooter es representado como:
 
+\begin{minted}{prolog}
 shooter(X) :- satisface('de tipo shooter',X).
-
+\end{minted}
 
 \subsection{Relación entre los los atributos de un objeto y las reglas}
 
@@ -131,9 +134,9 @@ cual razonar. Las reglas de clasificación de los objetos son propiedades
 sobre los mismos de las cuales podemos inferir conocimiento. Las reglas 
 implementadas son:
 
-\inputminted[firstline=17, lastline=31, fontsize=\footnotesize]{perl}{tp-prolog.pl}
+\inputminted[firstline=17, lastline=31, fontsize=\footnotesize]{prolog}{tp-prolog.pl}
 
-Cada una de estas reglas de clasificacion esta compuesta por predicados.
+Cada una de estas reglas de clasificación esta compuesta por predicados.
 Estas reglas por si solas no son más que conocimiento, pero necesitamos inferir 
 sobre el mismo; es decir, necesitamos un mecanismo sobre el cual interpretar las preferencias 
 de un usuario y agregar ese nuevo conocimento a la base de datos.
@@ -160,23 +163,26 @@ agregadas a la base de datos.\\
 %¿Cómo inferir nuevo conocimiento? ¿Cómo lo guardo?
 Todo conocimiento ganado es almacenado.
 Cada pregunta puede ser respondida con sí o no (o una leve variación 
-sintáctica de alguna de las mismas). El sistema hace una pregunta 
+sintáctica de estas palabras). El sistema hace una pregunta 
 sólo cuando desconoce su respuesta; es decir, sabe que elemento del dominio 
 posee un atributo o no, lo que desconoce es en que conjuntos de atributos 
 el usuario quiere que se satisfagan. En el siguiente ejemplo el 
 sistema desconoce si el usuario esta interesado en juegos para Windows, por lo
-que pregunta:\\
+que pregunta:
 
-¿Te interesa un juego que corra en Windows?\\
+\begin{verbatim}
+¿Te interesa un juego que corra en Windows?
+\end{verbatim}
 
-De responder si agrega si('que corrar en Windows') a la base de datos usando 
-assert de manera analoga si hubiera respondido no. Lo que hay que remarcar en ambos casos 
-es que la base de datos se expandio, ganando un criterio o preferencia del usuario.
+De responder si agrega \verb|si('que corra en Windows')| a la base de datos usando 
+assert, o de manera análoga con \verb|no('que corra en Windows')| si el usuario
+hubiera respondido que no le interesa. Lo que hay que remarcar en ambos casos 
+es que la base de datos se expandió, ganando un criterio o preferencia del usuario.
 
 \subsection{Combinando reglas} % borrar
 
-El problema de clasificación por etapas está presente en este sistema, el predicado 
-multiplataforma esta compuesto por tres predicados más simples
+El problema de clasificación por etapas está presente en este sistema: el predicado 
+multiplataforma está compuesto por tres predicados más simples
 combinados por un \emph{o} lógico que obliga al inferidor que proceda en etapas, 
 categorías que luego se especializan en Windows, GNU/Linux o MacOS. 
 
@@ -186,9 +192,11 @@ categorías que luego se especializan en Windows, GNU/Linux o MacOS.
 \section{Ejemplo completo de ejecución}
 
 El siguiente es un ejemplo de una consulta exitosa, a la cual es sistema encontro
-solucion:
+solución:
 
-?- juego.
+\begin{verbatim}
+
+? - juego.
 ¿Te interesa un juego que corra en Windows? si.
 
 ¿Te interesa un juego que sea multijugador? si.
@@ -202,10 +210,12 @@ solucion:
 ¿Te interesa un juego de tipo shooter? si.
 
 Te recomendamos jugar: Counter Strike: Global Offensive
+\end{verbatim}
 
 Aunque hay otras a las cuales el sistema no puede dar solución:
 
-?- juego.
+\begin{verbatim}
+? - juego.
 ¿Te interesa un juego que corra en Windows? no.
 
 ¿Te interesa un juego que corra en Mac OS X? no.
@@ -213,7 +223,7 @@ Aunque hay otras a las cuales el sistema no puede dar solución:
 ¿Te interesa un juego que corra en GNU/Linux? no.
 
 Te recomendamos jugar: no sabemos :(
-
+\end{verbatim}
 
 \end{document}
 
