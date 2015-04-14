@@ -14,8 +14,7 @@ shooter(X) :- satisface('de tipo shooter',X).
 estrategia(X) :- satisface('de estrategia',X).
 simulacion(X) :- satisface('de simulación',X).
 
-tf2(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X), estrategia(X).
-l4d2(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X).
+tf2(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), estrategia(X), shooter(X).
 csgo(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X).
 dota2(X) :- multiplataforma(X), multiplayer(X), estrategia(X).
 dying_light(X) :- (windows(X); linux(X)), multiplayer(X), accion(X).
@@ -55,7 +54,6 @@ borraResp.
 juego :- adivina(Juego,_), write('Te recomendamos jugar: '), write(Juego), nl, borraResp.
 
 adivina('Team Fortress 2',X) :- tf2(X), !.
-adivina('Left 4 Dead 2',X) :- l4d2(X), !.
 adivina('Counter Strike: Global Offensive',X) :- csgo(X), !.
 adivina('DOTA 2',X) :- dota2(X), !.
 adivina('Dying Light',X) :- dying_light(X), !.
