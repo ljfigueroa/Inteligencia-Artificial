@@ -80,7 +80,7 @@ Federico \textsc{Guimpel}\\
 
 El sistema experto propuesto clasifica juegos, los mismos como 
 dominio nos permiten generar un procedimiento que busque y verifique
-una hipótesis generando preguntas "necesarias" e informe con          % o.O
+una hipótesis generando preguntas solo cuando son necesarias e informe con          % o.O
 "Te recomendamos jugar: ..." sobre que elemento del dominio el
 usuario puede estar interesado.
 
@@ -116,7 +116,7 @@ lo representamos de la siguiente forma:\\
 
 csgo(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X).
 
-Donde la regla shooter es representada: 
+Donde el predicado shooter es representado: 
 
 shooter(X) :- satisface('de tipo shooter',X).
 
@@ -131,13 +131,15 @@ cual razonar. Las reglas de clasificación de los objetos son propiedades
 sobre los mismos de las cuales podemos inferir conocimiento. Las reglas 
 implementadas son:
 
-\inputminted[firstline=1, lastline=15, fontsize=\footnotesize]{perl}{tp-prolog.pl}
+\inputminted[firstline=17, lastline=31, fontsize=\footnotesize]{perl}{tp-prolog.pl}
 
+Cada una de estas reglas de clasificacion esta compuesta por predicados.
 Estas reglas por si solas no son más que conocimiento, pero necesitamos inferir 
 sobre el mismo; es decir, necesitamos un mecanismo sobre el cual interpretar las preferencias 
 de un usuario y agregar ese nuevo conocimento a la base de datos.
 
 % falta algo Titulo?
+\subsection{Expandir la base de datos}
 
 El predicado \emph{pregunta} dado en clase nos da una forma de ganar nuevo conocimiento
 realizando preguntas al usuario sobre sus preferencias.
@@ -155,17 +157,17 @@ agregadas a la base de datos.\\
 % expandiendo el poder de inferencia
 
 
-¿Cómo inferir nuevo conocimiento? ¿Cómo lo guardo?
-
+%¿Cómo inferir nuevo conocimiento? ¿Cómo lo guardo?
+Todo conocimiento ganado es almacenado.
 Cada pregunta puede ser respondida con sí o no (o una leve variación 
 sintáctica de alguna de las mismas). El sistema hace una pregunta 
 sólo cuando desconoce su respuesta; es decir, sabe que elemento del dominio 
 posee un atributo o no, lo que desconoce es en que conjuntos de atributos 
 el usuario quiere que se satisfagan. En el siguiente ejemplo el 
 sistema desconoce si el usuario esta interesado en juegos para Windows, por lo
-que pregunta:
+que pregunta:\\
 
-¿Te interesa un juego que corra en Windows? 
+¿Te interesa un juego que corra en Windows?\\
 
 De responder si agrega si('que corrar en Windows') a la base de datos usando 
 assert de manera analoga si hubiera respondido no. Lo que hay que remarcar en ambos casos 
@@ -180,18 +182,38 @@ categorías que luego se especializan en Windows, GNU/Linux o MacOS.
 
 %\subsection{Interpretacion y resultados}
 
-\section{Implementar el sistema experto}
+\newpage
+\section{Ejemplo completo de ejecución}
 
-En esta sección desarrollaremos como implementamos el sistema experto mostrando un ejemplo
-de su funcionamiento.
+El siguiente es un ejemplo de una consulta exitosa, a la cual es sistema encontro
+solucion:
 
+?- juego.
+¿Te interesa un juego que corra en Windows? si.
 
-\section*{Bibliografia}
+¿Te interesa un juego que sea multijugador? si.
 
+¿Te interesa un juego de tipo FPS? si.
 
-\href{http://susam.in/articles/boot-sector-code/}{Susam In}\\
-\href{http://www.pelletiernet.com/helppc/int_13-2.html}{INT 13}\\
-\href{http://en.wikipedia.org/wiki/Master_boot_record}{MBR wiki}
+¿Te interesa un juego de acción? si.
+
+¿Te interesa un juego de estrategia? no.
+
+¿Te interesa un juego de tipo shooter? si.
+
+Te recomendamos jugar: Counter Strike: Global Offensive
+
+Aunque hay otras a las cuales el sistema no puede dar solución:
+
+?- juego.
+¿Te interesa un juego que corra en Windows? no.
+
+¿Te interesa un juego que corra en Mac OS X? no.
+
+¿Te interesa un juego que corra en GNU/Linux? no.
+
+Te recomendamos jugar: no sabemos :(
+
 
 \end{document}
 
