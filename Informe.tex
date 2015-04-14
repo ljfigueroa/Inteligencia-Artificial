@@ -118,7 +118,7 @@ lo representamos de la siguiente forma:
 csgo(X) :- multiplataforma(X), multiplayer(X), fps(X), accion(X), shooter(X).
 \end{minted}
 
-Donde el predicado shooter es representado como:
+Donde el predicado \emph{shooter} es representado como:
 
 \begin{minted}{prolog}
 shooter(X) :- satisface('de tipo shooter',X).
@@ -139,7 +139,7 @@ implementadas son:
 Cada una de estas reglas de clasificación esta compuesta por predicados.
 Estas reglas por si solas no son más que conocimiento, pero necesitamos inferir 
 sobre el mismo; es decir, necesitamos un mecanismo sobre el cual interpretar las preferencias 
-de un usuario y agregar ese nuevo conocimento a la base de datos.
+de un usuario y agregar ese nuevo conocimiento a la base de datos.
 
 % falta algo Titulo?
 \subsection{Expandir la base de datos}
@@ -152,7 +152,7 @@ agregadas a la base de datos.\\
 
 % meh - borrar 
 %Pero, ¿Qué son las 
-%preguntas?, las preguntas son la unica manera que tiene el sistema diseñado 
+%preguntas?, las preguntas son la única manera que tiene el sistema diseñado 
 %para ganar conocimiento sobre lo que el usuario desea. ¿Que pasa cuando las responde?
 %cada vez que el usuario interactivamente las responde el 
 %conjunto de conocimiento se agranda, expandiendo el nivel de exactitud  % meh
@@ -175,7 +175,7 @@ que pregunta:
 \end{verbatim}
 
 De responder si agrega \verb|si('que corra en Windows')| a la base de datos usando 
-assert, o de manera análoga con \verb|no('que corra en Windows')| si el usuario
+\emph{assert}, o de manera análoga con \verb|no('que corra en Windows')| si el usuario
 hubiera respondido que no le interesa. Lo que hay que remarcar en ambos casos 
 es que la base de datos se expandió, ganando un criterio o preferencia del usuario.
 
@@ -186,16 +186,15 @@ multiplataforma está compuesto por tres predicados más simples
 combinados por un \emph{o} lógico que obliga al inferidor que proceda en etapas, 
 categorías que luego se especializan en Windows, GNU/Linux o MacOS. 
 
-%\subsection{Interpretacion y resultados}
+%\subsection{Interpretación y resultados}
 
 \newpage
 \section{Ejemplo completo de ejecución}
 
-El siguiente es un ejemplo de una consulta exitosa, a la cual es sistema encontro
+El siguiente es un ejemplo de una consulta exitosa, a la cual es sistema encontró
 solución:
 
 \begin{verbatim}
-
 ? - juego.
 ¿Te interesa un juego que corra en Windows? si.
 
