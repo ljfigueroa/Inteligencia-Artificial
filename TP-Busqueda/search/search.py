@@ -133,7 +133,7 @@ def breadthFirstSearch(problem):
     """
     Search the shallowest nodes in the search tree first.
     """
-    return search(problem, util.Stack())
+    return search(problem, util.Queue())
     #return searchWithPriority(problem, util.Queue())
 
 def uniformCostSearch(problem):
