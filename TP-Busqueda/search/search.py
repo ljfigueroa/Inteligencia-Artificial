@@ -86,26 +86,27 @@ def search(problem, fringe):
             for candidate in candidate_successors:
                 fringe.push(candidate)
 """
-candidate :: (priority, position, actions)
+candidate :: (position, actions, priority)
 """
 def searchWithPriority(problem, fringe):
     initial_state = problem.getStartState()
     initial_actions = []
-    initial_candidate = (0,initial_state, initial_actions)
+    initial_candidate = (initial_state, initial_actions,0)
     fringe.push(initial_candidate)
     closed_set = set()
     while not fringe.isEmpty():
         candidate = fringe.pop()
-        prioridad, state, actions = candidate
+        state, actions, prioridad = candidate
         if problem.isGoalState(state):
             return actions
         if state not in closed_set:
             closed_set.add(state)
             candidate_successors = problem.getSuccessors(state)
             candidate_successors = filter(lambda x: x[0] not in closed_set, candidate_successors)
-            candidate_successors = map(lambda x: (x[2], x[0], actions + [x[1]]), candidate_successors)
+            candidate_successors = map(lambda x: (x[0], actions + [x[1]],x[2]), candidate_successors)
             for candidate in candidate_successors:
                 fringe.push(candidate)
+
 
 def depthFirstSearch(problem):
     """
@@ -122,12 +123,12 @@ def depthFirstSearch(problem):
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
 
-    fringe = util.Stack()
-    solution = search(problem, fringe)
+    #fringe = util.Stack()
+    #solution = search(problem, fringe)
     #print problem.getCostOfActions(solution)
-    return solution
+    #return solution
 
-    #return searchWithPriority(problem, util.Stack())
+    return search(problem, util.Stack())
 
 def breadthFirstSearch(problem):
     """
@@ -139,7 +140,7 @@ def breadthFirstSearch(problem):
 def uniformCostSearch(problem):
     "Search the node of least total cost first."
     fringe = util.PriorityQueueWithFunction(util.PriorityQueue())
-    fringe.priorityFunction = lambda x: x[0]  # x[0] == priority
+    fringe.priorityFunction = lambda x: x[2]  # x[2] == priority
     return searchWithPriority(problem, fringe)
 
 def nullHeuristic(state, problem=None):
@@ -151,6 +152,10 @@ def nullHeuristic(state, problem=None):
 
 def aStarSearch(problem, heuristic=nullHeuristic):
     "Search the node that has the lowest combined cost and heuristic first."
+    fringe = util.PriorityQueueWithFunction(util.PriorityQueue())
+    fringe.priorityFunction = lambda x: heuristic(x[0],problem)
+    return search(problem, fringe)
+    
 
 # Abbreviations
 bfs = breadthFirstSearch
