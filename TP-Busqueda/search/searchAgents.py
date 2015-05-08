@@ -278,6 +278,8 @@ class CornersProblem(search.SearchProblem):
 
         "*** YOUR CODE HERE ***"
 
+        candidate_corners = filter(lambda x: startingGameState.hasFood(*corner), self.corners)
+        
     def getStartState(self):
         "Returns the start state (in your state space, not the full Pacman state space)"
         "*** YOUR CODE HERE ***"
