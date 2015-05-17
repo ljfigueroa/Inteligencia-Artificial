@@ -101,11 +101,6 @@ def depthFirstSearch(problem):
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
 
-    #fringe = util.Stack()
-    #solution = search(problem, fringe)
-    #print problem.getCostOfActions(solution)
-    #return solution
-
     return search(problem, util.Stack())
 
 def breadthFirstSearch(problem):
@@ -113,7 +108,6 @@ def breadthFirstSearch(problem):
     Search the shallowest nodes in the search tree first.
     """
     return search(problem, util.Queue())
-    #return searchWithPriority(problem, util.Queue())
 
 def uniformCostSearch(problem):
     "Search the node of least total cost first."
@@ -134,7 +128,6 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     fringe.priorityFunction = lambda x: heuristic(x[0],problem) + problem.getCostOfActions(x[1])
     return search(problem, fringe)
     
-
 # Abbreviations
 bfs = breadthFirstSearch
 dfs = depthFirstSearch
