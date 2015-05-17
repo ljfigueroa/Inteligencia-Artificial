@@ -85,28 +85,6 @@ def search(problem, fringe):
             candidate_successors = map(lambda x: (x[0], actions + [x[1]]), candidate_successors)
             for candidate in candidate_successors:
                 fringe.push(candidate)
-"""
-candidate :: (position, actions, priority)
-"""
-def searchWithPriority(problem, fringe):
-    initial_state = problem.getStartState()
-    initial_actions = []
-    initial_candidate = (initial_state, initial_actions,0)
-    fringe.push(initial_candidate)
-    closed_set = set()
-    while not fringe.isEmpty():
-        candidate = fringe.pop()
-        state, actions, prioridad = candidate
-        if problem.isGoalState(state):
-            return actions
-        if state not in closed_set:
-            closed_set.add(state)
-            candidate_successors = problem.getSuccessors(state)
-            candidate_successors = filter(lambda x: x[0] not in closed_set, candidate_successors)
-            candidate_successors = map(lambda x: (x[0], actions + [x[1]],x[2]), candidate_successors)
-            for candidate in candidate_successors:
-                fringe.push(candidate)
-
 
 def depthFirstSearch(problem):
     """
@@ -140,8 +118,8 @@ def breadthFirstSearch(problem):
 def uniformCostSearch(problem):
     "Search the node of least total cost first."
     fringe = util.PriorityQueueWithFunction(util.PriorityQueue())
-    fringe.priorityFunction = lambda x: x[2] +  problem.getCostOfActions(x[1]) # x[2] == priority
-    return searchWithPriority(problem, fringe)
+    fringe.priorityFunction = lambda x: problem.getCostOfActions(x[1])
+    return search(problem, fringe)
 
 def nullHeuristic(state, problem=None):
     """
